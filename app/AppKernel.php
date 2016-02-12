@@ -21,6 +21,7 @@ class AppKernel extends Kernel
            
             new UserBundle\UserBundle(),
             new ManagmentBundle\ManagmentBundle(),
+            new CustomerBundle\CustomerBundle(),
         );
         
 

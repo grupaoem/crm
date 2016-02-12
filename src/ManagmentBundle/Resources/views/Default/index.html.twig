@@ -3,10 +3,19 @@
 
 {% block body %}
 
-    <span> Witaj</span>
-    Jest to system zarządzania treścią i tu powinien się znajdować panel zarzadzania. 
-
+    <h2>Panel zarządzania</h2>
+    <p>Lista modułów:</p>
     
-    <BR><BR><BR>
-    <a href=" {{ path('zarzadzaj')}} ">zarzadzaj</a>
+    <ul>
+        <li><a href=" {{ path('manage_users')}} ">Zarzadzaj kontami użytkowników</a></li>
+        <li><a href=" {{ path('manage_customer') }} ">Zarządzaj klientami - manage_customers</a></li>
+        <li><a href="#">Zarządzaj kontrahentami - dostawcami - manage_contractor</a></li>
+        <li><a href="#">Pozyskanie klienta +zarzadzanie klientami</a></li>
+        <li><a href="#">Zarządzaj rabatami klientów +zarzadzanie klientami</a></li>
+        <li><a href="#">Zarządzaj dostępnymi płatnościami +zarzadzanie klientami</a></li>
+        <li><a href="#">Zarządzaj produktami</a></li>
+    </ul>
+        
+        
+    
 {% endblock %}

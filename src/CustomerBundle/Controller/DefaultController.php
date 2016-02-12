@@ -1,22 +1,17 @@
 <?php
 
-namespace ManagmentBundle\Controller;
+namespace CustomerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DefaultController extends Controller
 {
-
-     /**
-     * @Route("/", name="home")
+    /**
+     * @Route("/manage_customer", name="manage_customer")
      */
     public function indexAction()
     {
-        return $this->render('ManagmentBundle:Default:index.html.twig');
+        return $this->render('CustomerBundle:Default:index.html.twig');
     }
-    
-
-    
-
 }
