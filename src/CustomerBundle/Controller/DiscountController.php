@@ -26,9 +26,8 @@ class DiscountController extends Controller
                 ->findAll();
         
         
-        return $this->render('CustomerBundle:Discount:index.html.twig', array(
-            'discounts' => $discounts 
-        ));
+        return $this->render('CustomerBundle:Discount:index.html.twig', ['discounts' => $discounts]); 
+      
     }
 
         /**
@@ -39,9 +38,9 @@ class DiscountController extends Controller
         $discount = new Discount;
         
         $form = $this->createFormBuilder($discount)
-                ->add('name', TextType::class, array('label' => 'Nazwa rabatu', 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-                ->add('value', TextType::class, array('label' => 'Wartość', 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-                ->add('save', SubmitType::class, array('label' => 'Stworz', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-bottom:15px')))
+                ->add('name', TextType::class, ['label' => 'Nazwa rabatu', 'attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+                ->add('value', TextType::class, ['label' => 'Wartość', 'attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+                ->add('save', SubmitType::class, ['label' => 'Stworz', 'attr' => ['class' => 'btn btn-primary', 'style' => 'margin-bottom:15px']])
                 ->getForm();
         
         $form->handleRequest($request);
@@ -62,10 +61,7 @@ class DiscountController extends Controller
                     'Dodaną nowy rabat');
             return $this->redirectToRoute('discount');
         }
-        
-        return $this->render('CustomerBundle:Discount:create.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return $this->render('CustomerBundle:Discount:create.html.twig', ['form' => $form->createView()]);
     }
     
             /**

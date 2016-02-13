@@ -33,9 +33,10 @@ class DefaultController extends Controller
         
         $userManager = $this->container->get('fos_user.user_manager');
         $users = $userManager->findUsers();
-        return $this->render('UserBundle:UserManagement:index.html.twig', array(
-            'users' => $users
-        ));
+        return $this->render('UserBundle:UserManagement:index.html.twig', 
+            ['users' => $users]
+                );
+      
         
     }
     
@@ -48,9 +49,8 @@ class DefaultController extends Controller
         $userManager = $this->container->get('fos_user.user_manager');
         $users = $userManager->findUsers($id);
 
-        return $this->render('UserBundle:UserManagement:index.html.twig', array(
-            'users' => $users
-            ));
+        return $this->render('UserBundle:UserManagement:index.html.twig',
+            ['users' => $users]);
           
     }
 

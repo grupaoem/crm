@@ -26,9 +26,7 @@ class CustomerTypeController extends Controller
                 ->findAll();
         
         
-        return $this->render('CustomerBundle:CustomerType:index.html.twig', array(
-            'customer_types' => $customer_types
-        ));
+        return $this->render('CustomerBundle:CustomerType:index.html.twig', ['customer_types' => $customer_types]);
     }
 
         /**
@@ -39,8 +37,8 @@ class CustomerTypeController extends Controller
         $customer_type = new CustomerType;
         
         $form = $this->createFormBuilder($customer_type)
-                ->add('name', TextType::class, array('label' => 'Nazwa rodzaju działalnosci', 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-                ->add('save', SubmitType::class, array('label' => 'Stworz', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-bottom:15px')))
+                ->add('name', TextType::class, ['label' => 'Nazwa rodzaju działalnosci', 'attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+                ->add('save', SubmitType::class, ['label' => 'Stworz', 'attr' => ['class' => 'btn btn-primary', 'style' => 'margin-bottom:15px']])
                 ->getForm();
         
         $form->handleRequest($request);
@@ -59,9 +57,8 @@ class CustomerTypeController extends Controller
             return $this->redirectToRoute('customer_type');
         }
         
-        return $this->render('CustomerBundle:CustomerType:create.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return $this->render('CustomerBundle:CustomerType:create.html.twig', ['form' => $form->createView()]);
+        
     }
     
             /**

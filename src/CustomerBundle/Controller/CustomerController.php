@@ -25,9 +25,9 @@ class CustomerController extends Controller
                 ->getRepository('CustomerBundle:Customer')
                 ->findAll();
         
-        return $this->render('CustomerBundle:CustomerManage:index.html.twig', array(
+        return $this->render('CustomerBundle:CustomerManage:index.html.twig', [
             'customers' => $customers
-        ));
+        ]);
     }
     
     /**
@@ -38,24 +38,24 @@ class CustomerController extends Controller
         $customer = new Customer;
 
         $form = $this->createFormBuilder($customer)
-        ->add('name', TextType::class, array('label' => 'Nazwa firmy', 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('short_name', TextType::class, array('label' => 'Skrócona nazwa firmy','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('nip', TextType::class, array('label' => 'NIP','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('regon', TextType::class, array('label' => 'REGON','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('zip_code', TextType::class, array('label' => 'Kod pocztowy','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('city', TextType::class, array('label' => 'Miasto','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('country', TextType::class, array('label' => 'Kraj','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('number_house', TextType::class, array('label' => 'Numer budynku','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('number_apartament', TextType::class, array('label' => 'Nr lokalu','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('web_page', TextType::class, array('label' => 'Strona internetowa','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('email', TextType::class, array('label' => 'email','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-        ->add('phone_number', TextType::class, array('label' => 'Numer telefonu','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
+        ->add('name', TextType::class, ['label' => 'Nazwa firmy', 'attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('short_name', TextType::class, ['label' => 'Skrócona nazwa firmy','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('nip', TextType::class, ['label' => 'NIP','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('regon', TextType::class, ['label' => 'REGON','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('zip_code', TextType::class, ['label' => 'Kod pocztowy','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('city', TextType::class, ['label' => 'Miasto','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('country', TextType::class, ['label' => 'Kraj','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('number_house', TextType::class, ['label' => 'Numer budynku','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('number_apartament', TextType::class, ['label' => 'Nr lokalu','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('web_page', TextType::class, ['label' => 'Strona internetowa','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('email', TextType::class, ['label' => 'email','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+        ->add('phone_number', TextType::class, ['label' => 'Numer telefonu','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
 /*
         ->add('category', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
         ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
         ->add('priority', ChoiceType::class, array('choices' => array('Low' => 'Low', 'Normal' => 'Normal', 'High' => 'High'), 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))*/
         
-        ->add('save', SubmitType::class, array('label' => 'Stworz', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-bottom:15px')))
+        ->add('save', SubmitType::class, ['label' => 'Stworz', 'attr' => ['class' => 'btn btn-primary', 'style' => 'margin-bottom:15px']])
         ->getForm();
 
         $form->handleRequest($request);
@@ -71,9 +71,7 @@ class CustomerController extends Controller
             $web_page = $form['web_page']->getData();
             $email  = $form['email']->getData();
             $phone_number = $form['phone_number']->getData();
-            
 
-            
             $now = new\DateTime('now');
 
             $customer->setName($name);
@@ -101,9 +99,9 @@ class CustomerController extends Controller
         }
 
 
-        return $this->render('CustomerBundle:CustomerManage:create.html.twig', array(
+        return $this->render('CustomerBundle:CustomerManage:create.html.twig', [
             'form' => $form->createView()
-            ));
+            ]);
     }
     
      /**
@@ -116,9 +114,8 @@ class CustomerController extends Controller
             ->getRepository('CustomerBundle:Customer')
             ->find($id);
 
-        return $this->render('CustomerBundle:CustomerManage:details.html.twig', array(
-            'customer' => $customer
-            ));
+        return $this->render('CustomerBundle:CustomerManage:details.html.twig', 
+            ['customer' => $customer]);
           
     }
     
@@ -140,7 +137,5 @@ class CustomerController extends Controller
                 );
              return $this->redirectToRoute('manage_customer');
 
-
-          
     }
 }

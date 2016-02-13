@@ -27,9 +27,9 @@ class UserController extends Controller
 
         $users = $em->getRepository('UserBundle:User')->findAll();
 
-        return $this->render('user/index.html.twig', array(
-            'users' => $users,
-        ));
+        return $this->render('user/index.html.twig', 
+            ['users' => $users,]);
+        
     }
 
     /**
@@ -41,8 +41,8 @@ class UserController extends Controller
     public function showAction(User $user)
     {
 
-        return $this->render('user/show.html.twig', array(
-            'user' => $user,
-        ));
+        return $this->render('user/show.html.twig', 
+                ['user' => $user]);
+       
     }
 }

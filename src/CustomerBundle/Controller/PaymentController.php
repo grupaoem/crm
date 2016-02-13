@@ -8,9 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use CustomerBundle\Entity\Payment;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
@@ -26,9 +23,7 @@ class PaymentController extends Controller
                 ->findAll();
         
         
-        return $this->render('CustomerBundle:Payment:index.html.twig', array(
-            'payments' => $payments 
-        ));
+        return $this->render('CustomerBundle:Payment:index.html.twig', ['payments' => $payments]);
     }
 
         /**
@@ -39,8 +34,8 @@ class PaymentController extends Controller
         $payment = new Payment;
         
         $form = $this->createFormBuilder($payment)
-                ->add('name', TextType::class, array('label' => 'Nazwa platnosci', 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-                ->add('save', SubmitType::class, array('label' => 'Stworz', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-bottom:15px')))
+                ->add('name', TextType::class, ['label' => 'Nazwa platnosci', 'attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+                ->add('save', SubmitType::class, ['label' => 'Stworz', 'attr' => ['class' => 'btn btn-primary', 'style' => 'margin-bottom:15px']])
                 ->getForm();
         
         $form->handleRequest($request);
@@ -59,9 +54,8 @@ class PaymentController extends Controller
             return $this->redirectToRoute('payment');
         }
         
-        return $this->render('CustomerBundle:Payment:create.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return $this->render('CustomerBundle:Payment:create.html.twig', ['form' => $form->createView()]);
+       
     }
     
             /**
