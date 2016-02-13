@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2>Panel zarządzania klientami.</h2>
+<a href="manage_customer/create" class="btn btn-success">Dodaj nowego klienta</a>
+    
+<h2 class="page-header">Lista klientow</h2>
+<table class="table table-striped"> 	
+    <thead> 
+        <tr> 
+            <th>Nr</th> 
+            <th>ID</th>
+            <th>Nazwa</th> 
+            <th>Skrócona nazwa</th> 
+            <th>NIP</th> 
+            <th>Miasto</th>
+            <th>Telefon</th>
+            <th></th>
+        </tr> 
+    </thead> 
+    <tbody> 
+        <tr> 
+     
+        {% for a in customers %}
+        
+        <td> {{ loop.index }} </td>
+        <th scope="row">{{a.id}}</th> 
+        <td>{{a.name}}</td> 
+        <td>{{a.shortname}}</td>
+        <td>{{a.nip}}</td>
+        <td>{{a.city}}</td>
+        <td>{{a.phonenumber}}</td>
+
+
+        <td>
+        <a href="manage_customer/details/{{a.id}}" class="btn btn-success">Zobacz</a>
+
+        </td>
+        </tr> 
+        <tr> 
+        {% endfor %}
+       
+    </tbody> 
+</table>
+<div class="panel panel-primary">
+    <div class="panel-heading"> 
+        <h3 class="panel-title">Właściwości atrybutów dla wszystkich klientów</h3> 
+    </div> <div class="panel-body">
+
+        <p>Lista wszystkich klientów firmy.</p>
+        <a href=" {{ path('payment') }}">Płatności</a>
+        <br>
+        <a href=" {{ path('discount') }}">Rabaty</a>
+        <br>
+        <a href=" {{ path('customer_type') }}">Rodzaje działalności</a>
+    </div> 
+</div>  
+{% endblock %}

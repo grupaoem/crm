@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="page-header">
+    
+    <h1><div style="font-size:12px">Nazwa kontrahenta / Skrócona nazwa:</div>{{customer.name}} <small>/  {{customer.shortName}}</small></h1>
+    
+</div>
+
+<div class="row">
+        <div class="col-md-6">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <button type="button" class="btn btn-success btn-s">Najważniejsze informacje kontrahenta</button>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body">
+                    <ul>
+                        <li>Numer Telefonu: {{customer.phoneNumber}}</li>
+                        <li>{{customer.name}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button type="button" class="btn btn-denger btn-xs">Kasowanie oraz edycja klienta</button>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+
+                    <div class="panel-body">
+
+                      <a href="{{customer.id}}" class="btn btn-default">Edytuj</a>
+                    <a href="../details/delete/{{customer.id}}" class="btn btn-danger">Skasuj</a>
+
+                  </div>
+                </div>
+              </div>
+            </div> 
+        </div>
+        <div class="col-md-6">
+            Notatki?
+        </div>
+</div>
+        <hr style="width: 100%; color:blue; height: 1px; background-color:#cccccc; "/>
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Szczegóły klienta</a></li>
+  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+
+      
+ <table class="table">
+    <thead>
+      <tr>
+        <th>Nazwa:</th>
+        <th>Wartość:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Nazwa firmy:</strong></td>
+        <td>{{customer.name}}</td>
+      </tr>
+      <tr>
+        <td><strong>Skrócona nazwa firmy:</strong></td>
+        <td>{{customer.shortName}}</td>
+      </tr>      
+      <tr>
+        <td><strong>NIP:</strong></td>
+        <td>{{customer.nip}}</td>
+      </tr>
+      <tr>
+        <td><strong>REGON:</strong></td>
+        <td>{{customer.regon}}</td>
+      </tr>     
+      <tr>
+        <td><strong>Numer budynku:</strong></td>
+        <td>{{customer.numberHouse}}</td>
+      </tr>
+      <tr>
+        <td><strong>Numer lokalu:</strong></td>
+        <td>{{customer.numberApartament}}</td>
+      </tr>      
+      <tr>
+        <td><strong>Kod pocztowy:</strong></td>
+        <td>{{customer.zipCode}}</td>
+      </tr>
+      <tr>
+        <td><strong>Miasto:</strong></td>
+        <td>{{customer.city}}</td>
+      </tr>     
+      <tr>
+        <td><strong>Kraj:</strong></td>
+        <td>{{customer.country}}</td>
+      </tr>
+      <tr>
+        <td><strong>Email:</strong></td>
+        <td><a href="mailto:{{customer.email}}">{{customer.email}}</a></td>
+      </tr>      
+      <tr>
+        <td><strong>Strona internetowa:</strong></td>
+        <td><a target="_blank" href="http://{{customer.webPage}}">{{customer.webPage}}</a></td>
+      </tr>
+      <tr>
+        <td><strong>Data utworzenia konta firmy:</strong></td>
+        <td>{{customer.dateAdd|date('F j, Y, g:i a')}}</td>
+      </tr>     
+    </tbody>
+  </table> 
+
+  </div>
+  <div id="menu1" class="tab-pane fade">
+    <h3>Menu 1</h3>
+    <p>Some content in menu 1.</p>
+  </div>
+  <div id="menu2" class="tab-pane fade">
+    <h3>Menu 2</h3>
+    <p>Some content in menu 2.</p>
+  </div>
+</div>
+    
+
+
+
+
+
+{% endblock %}

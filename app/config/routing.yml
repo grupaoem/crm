@@ -4,7 +4,7 @@ customer:
     prefix:   /
 
 user_user:
-    resource: "@UserBundle/Controller/UserController.php"
+    resource: "@UserBundle/Controller/"
     type:     annotation
 
 managment:
