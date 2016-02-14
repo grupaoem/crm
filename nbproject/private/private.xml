@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/E:/xampp/htdocs/crm/src/ManagmentBundle/Resources/views/base.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Resources/views/CustomerManage/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/ManagmentBundle/ManagmentBundle.php</file>
+            <file>file:/E:/xampp/htdocs/crm/app/config/routing.yml</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Entity/Customer.php</file>
+            <file>file:/E:/xampp/htdocs/crm/src/UserBundle/Resources/views/Profile/edit_content.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Controller/CustomerController.php</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Entity/CustomerType.php</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Resources/views/CustomerType/create.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/UserBundle/Resources/views/layout.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/app/Resources/views/base.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/UserBundle/Resources/views/Profile/show.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/UserBundle/Resources/views/Profile/show_content.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/app/Resources/views/default/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/ManagmentBundle/Controller/ManagmentController.php</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Resources/views/CustomerType/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/UserBundle/Resources/views/Default/login.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Resources/views/CustomerManage/details.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Controller/CustomerTypeController.php</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Resources/views/CustomerManage/create.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Resources/views/Discount/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/ManagmentBundle/Resources/views/Default/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/app/config/security.yml</file>
+            <file>file:/E:/xampp/htdocs/crm/src/UserBundle/Resources/config/services.yml</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Controller/DiscountController.php</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Resources/views/Payment/index.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Controller/PaymentController.php</file>
+            <file>file:/E:/xampp/htdocs/crm/src/UserBundle/Controller/UserController.php</file>
+            <file>file:/E:/xampp/htdocs/crm/app/config/config.yml</file>
+            <file>file:/E:/xampp/htdocs/crm/src/UserBundle/Resources/views/Security/login.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/UserBundle/Resources/views/UserManagement/details.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/CustomerBundle/Resources/views/Discount/create.html.twig</file>
+            <file>file:/E:/xampp/htdocs/crm/src/UserBundle/Resources/views/UserManagement/index.html.twig</file>
+        </group>
+    </open-files>
 </project-private>

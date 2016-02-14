@@ -12,4 +12,36 @@ use Doctrine\ORM\EntityRepository;
  */
 class CustomerRepository extends EntityRepository
 {
+    
+    public function findByCustomer($id)
+{
+    $query = $this->getEntityManager()
+        ->createQuery(
+            'SELECT p, c FROM CustomerBundle:Customer p
+            JOIN p.note c
+            WHERE p.id = :customer_id'
+        )->setParameter('id', $id);
+
+    try {
+        return $query->getSingleResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+}
+
+    public function findById($id)
+{
+    $query = $this->getEntityManager()
+        ->createQuery(
+            'SELECT p, c FROM CustomerBundle:Customer p
+            JOIN p.note c
+            WHERE p.id = :id'
+        )->setParameter('id', $id);
+
+    try {
+        return $query->getSingleResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+}
 }

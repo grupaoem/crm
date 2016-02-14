@@ -3,6 +3,7 @@
 namespace CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Customer
@@ -421,4 +422,138 @@ class Customer
     {
         return $this->dateAdd;
     }    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Payment", inversedBy="customers")
+     * @ORM\JoinColumn(name="payment_id", referencedColumnName="id")
+     */
+    protected $payment;
+
+    /**
+     * Set payment
+     *
+     * @param \CustomerBundle\Entity\Payment $payment
+     * @return Customer
+     */
+    public function setPayment(\CustomerBundle\Entity\Payment $payment = null)
+    {
+        $this->payment = $payment;
+
+        return $this;
+    }
+
+    /**
+     * Get payment
+     *
+     * @return \CustomerBundle\Entity\Payment 
+     */
+    public function getPayment()
+    {
+        return $this->payment;
+    }
+    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Discount", inversedBy="customers")
+     * @ORM\JoinColumn(name="discount_id", referencedColumnName="id")
+     */
+    protected $discount;
+    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="CustomerType", inversedBy="customers")
+     * @ORM\JoinColumn(name="customer_type_id", referencedColumnName="id")
+     */
+    protected $customerType;
+
+    /**
+     * Set discount
+     *
+     * @param \CustomerBundle\Entity\Discount $discount
+     * @return Customer
+     */
+    public function setDiscount(\CustomerBundle\Entity\Discount $discount = null)
+    {
+        $this->discount = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Get discount
+     *
+     * @return \CustomerBundle\Entity\Discount 
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * Set customerType
+     *
+     * @param \CustomerBundle\Entity\CustomerType $customerType
+     * @return Customer
+     */
+    public function setCustomerType(\CustomerBundle\Entity\CustomerType $customerType = null)
+    {
+        $this->customerType = $customerType;
+
+        return $this;
+    }
+
+    /**
+     * Get customerType
+     *
+     * @return \CustomerBundle\Entity\CustomerType 
+     */
+    public function getCustomerType()
+    {
+        return $this->customerType;
+    }
+    
+    
+    
+     /**
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="customer")
+     */
+    protected $notes;
+
+    public function __construct()
+    {
+        $this->notes = new ArrayCollection();
+    }
+
+    /**
+     * Add notes
+     *
+     * @param \CustomerBundle\Entity\Note $notes
+     * @return Customer
+     */
+    public function addNote(\CustomerBundle\Entity\Note $notes)
+    {
+        $this->notes[] = $notes;
+
+        return $this;
+    }
+
+    /**
+     * Remove notes
+     *
+     * @param \CustomerBundle\Entity\Note $notes
+     */
+    public function removeNote(\CustomerBundle\Entity\Note $notes)
+    {
+        $this->notes->removeElement($notes);
+    }
+
+    /**
+     * Get notes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
 }

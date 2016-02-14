@@ -9,13 +9,11 @@
     
     
     <ul>
+        {% if is_granted("ROLE_ADMIN") %}
         <li><a href=" {{ path('manage_users')}} ">Zarzadzaj kontami użytkowników</a></li>
+        {% endif %}
         <li><a href=" {{ path('manage_customer') }} ">Zarządzaj klientami - manage_customers</a></li>
-        <li><a href="#">Zarządzaj kontrahentami - dostawcami - manage_contractor</a></li>
-        <li><a href="#">Pozyskanie klienta +zarzadzanie klientami</a></li>
-        <li><a href="#">Zarządzaj rabatami klientów +zarzadzanie klientami</a></li>
-        <li><a href="#">Zarządzaj dostępnymi płatnościami +zarzadzanie klientami</a></li>
-        <li><a href="#">Zarządzaj produktami</a></li>
+        
     </ul>
         
         

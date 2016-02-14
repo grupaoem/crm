@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CustomerController extends Controller
 {
@@ -36,21 +37,39 @@ class CustomerController extends Controller
      public function createAction(Request $request)
     {  
         $customer = new Customer;
-
+               
         $form = $this->createFormBuilder($customer)
-        ->add('name', TextType::class, ['label' => 'Nazwa firmy', 'attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('short_name', TextType::class, ['label' => 'Skrócona nazwa firmy','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('nip', TextType::class, ['label' => 'NIP','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('regon', TextType::class, ['label' => 'REGON','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('zip_code', TextType::class, ['label' => 'Kod pocztowy','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('city', TextType::class, ['label' => 'Miasto','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('country', TextType::class, ['label' => 'Kraj','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('number_house', TextType::class, ['label' => 'Numer budynku','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('number_apartament', TextType::class, ['label' => 'Nr lokalu','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('web_page', TextType::class, ['label' => 'Strona internetowa','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('email', TextType::class, ['label' => 'email','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-        ->add('phone_number', TextType::class, ['label' => 'Numer telefonu','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
-/*
+        ->add('name', TextType::class, ['label' => 'Nazwa firmy', 'attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('short_name', TextType::class, ['label' => 'Skrócona nazwa firmy','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('nip', TextType::class, ['label' => 'NIP','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('regon', TextType::class, ['label' => 'REGON','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('zip_code', TextType::class, ['label' => 'Kod pocztowy','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('city', TextType::class, ['label' => 'Miasto','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('country', TextType::class, ['label' => 'Kraj','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('number_house', TextType::class, ['label' => 'Numer budynku','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('number_apartament', TextType::class, ['label' => 'Nr lokalu','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('web_page', TextType::class, ['label' => 'Strona internetowa','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('email', TextType::class, ['label' => 'email','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('phone_number', TextType::class, ['label' => 'Numer telefonu','attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']])
+        ->add('payment', EntityType::class, [
+            'label' => 'Wybierz płatność',
+            'class' => 'CustomerBundle:Payment',
+            'choice_label' => 'name',
+            'attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']
+             ])
+        ->add('discount', EntityType::class, [
+            'label' => 'Wybierz rabat dla klienta',
+            'class' => 'CustomerBundle:Discount',
+            'choice_label' => 'name',
+            'attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']
+             ])
+        ->add('customer_type', EntityType::class, [ 
+            'label' => 'Wybierz formę działalności klienta',
+            'class' => 'CustomerBundle:CustomerType',
+            'choice_label' => 'name',
+            'attr' => ['class' => 'form-control', 'style' => 'margin-bottom:10px']
+             ])
+                /*      
         ->add('category', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
         ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
         ->add('priority', ChoiceType::class, array('choices' => array('Low' => 'Low', 'Normal' => 'Normal', 'High' => 'High'), 'attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))*/
@@ -71,7 +90,9 @@ class CustomerController extends Controller
             $web_page = $form['web_page']->getData();
             $email  = $form['email']->getData();
             $phone_number = $form['phone_number']->getData();
-
+            $payment = $form['payment']->getData();
+            $discount = $form['discount']->getData();
+            $customer_type = $form['customer_type']->getData();
             $now = new\DateTime('now');
 
             $customer->setName($name);
@@ -85,6 +106,9 @@ class CustomerController extends Controller
             $customer->setEmail($email);
             $customer->setPhoneNumber($phone_number);
             $customer->setDateAdd($now);
+            $customer->setPayment($payment);
+            $customer->setDiscount($discount);
+            $customer->setCustomerType($customer_type);
             
             $em = $this->getDoctrine()->getManager();
             $em->persist($customer);
@@ -95,7 +119,6 @@ class CustomerController extends Controller
                 'Dodany nowy klient'
                 );
              return $this->redirectToRoute('manage_customer');
-
         }
 
 
@@ -109,13 +132,29 @@ class CustomerController extends Controller
      */
     public function detailsAction($id)
     {
-
+        
         $customer = $this->getDoctrine()
             ->getRepository('CustomerBundle:Customer')
             ->find($id);
-
+        
+        $notes = $this->getDoctrine()
+            ->getRepository('CustomerBundle:Note')
+            ->findByCustomer($id);
+        
+        $payment = $customer->getPayment();
+        $discount = $customer->getDiscount();
+        $customertype = $customer->getCustomerType();
+        
+        
+        
         return $this->render('CustomerBundle:CustomerManage:details.html.twig', 
-            ['customer' => $customer]);
+            ['customer' => $customer,
+             'payment' => $payment,
+             'notes' => $notes,
+             'discount' => $discount,
+             'customertype' => $customertype,
+             'notes' => $notes,
+                ]);
           
     }
     
@@ -130,7 +169,6 @@ class CustomerController extends Controller
             $em->remove($customer);
             $em->flush();
 
-
             $this->addFlash(
                 'notice',
                 'Skasowano klienta'
@@ -138,4 +176,37 @@ class CustomerController extends Controller
              return $this->redirectToRoute('manage_customer');
 
     }
+    
+
+     /**
+     * @Route("/manage_customer/details/{id}/create", name="manage_customer_details")
+     */
+    public function createnoteAction($id)
+    {
+        
+        $customer = $this->getDoctrine()
+            ->getRepository('CustomerBundle:Customer')
+            ->find($id);
+        
+        $notes = $this->getDoctrine()
+            ->getRepository('CustomerBundle:Note')
+            ->findByCustomer($id);
+        
+        $payment = $customer->getPayment();
+        $discount = $customer->getDiscount();
+        $customertype = $customer->getCustomerType();
+        
+        
+        
+        return $this->render('CustomerBundle:CustomerManage:details.html.twig', 
+            ['customer' => $customer,
+             'payment' => $payment,
+             'notes' => $notes,
+             'discount' => $discount,
+             'customertype' => $customertype,
+             'notes' => $notes,
+                ]);
+          
+    }    
+    
 }

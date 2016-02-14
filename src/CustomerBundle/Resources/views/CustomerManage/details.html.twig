@@ -2,14 +2,14 @@
 
 
 {% block body %}
-<div class="page-header">
+<div class="page-header"><a href="../../manage_customer" class="btn btn-default">Przeglądaj litę wszystkich klientów</a>
     
     <h1><div style="font-size:12px">Nazwa kontrahenta / Skrócona nazwa:</div>{{customer.name}} <small>/  {{customer.shortName}}</small></h1>
-    
+    <a href="../create" class="btn btn-success">Dodaj nowego klienta</a> 
 </div>
 
 <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">
@@ -24,6 +24,9 @@
                     <ul>
                         <li>Numer Telefonu: {{customer.phoneNumber}}</li>
                         <li>{{customer.name}}</li>
+                        <li style="font-weight:bold;">{{payment.name}}</li>
+                        <li>{{discount.name}}</li>
+                        <li>{{customertype.name}}</li>
                     </ul>
                   </div>
                 </div>
@@ -32,7 +35,13 @@
                 <div class="panel-heading" role="tab" id="headingTwo">
                   <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <button type="button" class="btn btn-denger btn-xs">Kasowanie oraz edycja klienta</button>
+                        {% if is_granted("ROLE_ADMIN") %}
+                        <button type="button" class="btn btn-denger btn-xs">Usunięcie klienta</button>
+                        {% endif %}
+                        
+                        {% if is_granted("ROLE_USER") %}
+                        <button type="button" class="btn btn-denger btn-xs">Edycja danych klienta</button>
+                        {% endif %}
                     </a>
                   </h4>
                 </div>
@@ -41,22 +50,50 @@
                     <div class="panel-body">
 
                       <a href="{{customer.id}}" class="btn btn-default">Edytuj</a>
+                      {% if is_granted("ROLE_ADMIN") %}
                     <a href="../details/delete/{{customer.id}}" class="btn btn-danger">Skasuj</a>
+                      {% endif %}
 
                   </div>
                 </div>
               </div>
             </div> 
         </div>
-        <div class="col-md-6">
-            Notatki?
+        
+          <div class="col-md-8">    
+              <table class="table">
+    <thead>
+      <tr>
+        
+        
+        <th>Opis</th>
+        <th>Data dodatnia</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+         
+            {% for b in notes %}
+      <tr>
+        
+       
+        <td><p style="font-weight:bold">{{b.name}}</p> {{b.description}}</td>
+        <td>{{b.dateAdd|date('F j, Y, g:i a')}}</td>
+        <td><span href="/manage_customer/details/deletenote/{id}" class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+      </tr>
+      {%endfor%}
+      
+    </tbody>
+
+  </table>
+       <a href="../create" class="btn btn-success">Dodaj nową notatkę</a>         
         </div>
 </div>
         <hr style="width: 100%; color:blue; height: 1px; background-color:#cccccc; "/>
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#home">Szczegóły klienta</a></li>
-  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+<!--  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>-->
 </ul>
 
 <div class="tab-content">

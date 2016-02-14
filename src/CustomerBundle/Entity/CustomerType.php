@@ -61,4 +61,33 @@ class CustomerType
     {
         return $this->name;
     }
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="CustomerType", inversedBy="customer")
+     * @ORM\JoinColumn(name="customer_type_id", referencedColumnName="id")
+     */
+    protected $customerType;
+
+    /**
+     * Set customerType
+     *
+     * @param \CustomerBundle\Entity\CustomerType $customerType
+     * @return CustomerType
+     */
+    public function setCustomerType(\CustomerBundle\Entity\CustomerType $customerType = null)
+    {
+        $this->customerType = $customerType;
+
+        return $this;
+    }
+
+    /**
+     * Get customerType
+     *
+     * @return \CustomerBundle\Entity\CustomerType 
+     */
+    public function getCustomerType()
+    {
+        return $this->customerType;
+    }
 }
