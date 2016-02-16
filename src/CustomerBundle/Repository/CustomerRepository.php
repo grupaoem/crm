@@ -12,7 +12,6 @@ use Doctrine\ORM\EntityRepository;
  */
 class CustomerRepository extends EntityRepository
 {
-    
     public function findByCustomer($id)
 {
     $query = $this->getEntityManager()
@@ -28,7 +27,6 @@ class CustomerRepository extends EntityRepository
         return null;
     }
 }
-
     public function findById($id)
 {
     $query = $this->getEntityManager()

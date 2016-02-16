@@ -3,18 +3,33 @@
 
 {% block body %}
 
+<div class="row">
+  <div class="col-sm-6 col-md-">
+    <div class="thumbnail">
+      <img src="{{ asset('public/images/klienci.jpg') }}" alt="...">
+      <div class="caption">
+        <h3>Zarządzaj klientami</h3>
+        <p>Przeglądaj kontrahentów firmy.</p>
+        <p><a href=" {{ path('manage_customer') }} " class="btn btn-primary" role="button">Wejdź</a> </p>
+      </div>
+    </div>
+  </div>
+       {% if is_granted("ROLE_ADMIN") %}
+      <div class="col-sm-6 col-md-6">
+    <div class="thumbnail">
+      <img src="{{ asset('public/images/klientami.jpg') }}" alt="...">
+      <div class="caption">
+        <h3>Zarządzaj użytkownikami</h3>
+        <p>Wejdź do menadżera kont z dostępem do aplikacji.</p>
+        <p><a href="{{ path('manage_users')}}" class="btn btn-primary" role="button">Wejdź</a> </p>
+      </div>
+    </div>
+  </div>
+     {% endif %} 
+</div>
 
+       
     
-    
-    
-    
-    <ul>
-        {% if is_granted("ROLE_ADMIN") %}
-        <li><a href=" {{ path('manage_users')}} ">Zarzadzaj kontami użytkowników</a></li>
-        {% endif %}
-        <li><a href=" {{ path('manage_customer') }} ">Zarządzaj klientami - manage_customers</a></li>
-        
-    </ul>
         
         
     

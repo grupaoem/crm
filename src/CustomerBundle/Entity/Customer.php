@@ -112,7 +112,13 @@ class Customer
      * @ORM\Column(name="date_add", type="datetime")
      */
     private $dateAdd;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_id", type="string", length=255)
+     */
+    private $userId;
 
     /**
      * Get id
@@ -421,7 +427,30 @@ class Customer
     public function getDateAdd()
     {
         return $this->dateAdd;
-    }    
+    }   
+    
+    /**
+     * Set userId
+     *
+     * @param string $userId
+     * @return Customer
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return string 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    } 
     
     /**
      * @ORM\ManyToOne(targetEntity="Payment", inversedBy="customers")

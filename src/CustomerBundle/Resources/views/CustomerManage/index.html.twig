@@ -2,10 +2,21 @@
 
 
 {% block body %}
-
+ <div class="row">
+ <div class="col-lg-6">
     <h2>Panel zarządzania klientami.</h2>
 <a href="manage_customer/create" class="btn btn-success">Dodaj nowego klienta</a>
-  
+ </div>
+ <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Szukaj klienta...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Szukaj</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+ </div>
+
 <h2 class="page-header">Lista klientow</h2>
 <table class="table table-striped"> 	
     <thead> 
