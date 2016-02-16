@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<h2 class="page-header">Panel zarządzania rabatami</h2>
+<table class="table table-striped"> 	
+<thead> 
+<tr> 
+<th>Symbol</th> 
+<th>Nazwa</th> 
+<th></th>
+</tr> 
+</thead> 
+<tbody> 
+<tr> 
+
+{% for a in discounts %}
+<th scope="row">{{a.id}}</th> 
+<th scope="row">{{a.name}}</th> 
+<th scope="row">{{a.value}}</th>
+
+<td>
+<a href="discount/delete/{{a.id}}" class="btn btn-danger">Skasuj</a>
+</td>
+</tr> 
+<tr> 
+{% endfor %}
+</tbody> 
+</table>
+
+<a href="{{ path('discount_create')}}" class="btn btn-success">Dodaj</a>
+
+    
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    
+<h2 class="page-header">Panel zarządzania kontami aplikacji.</h2>
+<a href="register" class="btn btn-success">Dodaj nowego użytkownika</a>
+<table class="table table-striped"> 	
+    <thead> 
+        <tr> 
+            <th>Symbol</th> 
+            <th>Nazwa</th> 
+            <th>Email</th> 
+            <th></th>
+        </tr> 
+    </thead> 
+    <tbody> 
+        <tr> 
+        {% for a in users %}
+        <th scope="row">{{a.id}}</th> 
+        <th scope="row">{{a.username}}</th>  
+        <th scope="row">{{a.email}}</th>  
+        <td>
+            <a href="manage_users/details/{{a.id}}" class="btn btn-success">Zobacz</a>
+            <a href="/user/edit/{{a.id}}" class="btn btn-default">Edytuj</a>
+            <a href="/user/delete/{{a.id}}" class="btn btn-danger">Skasuj</a>
+        </td>
+        </tr> 
+    <tr> 
+    {% endfor %}
+    </tbody> 
+</table>
+
+{{ block('fos_user_content') }}
+{% endblock %}

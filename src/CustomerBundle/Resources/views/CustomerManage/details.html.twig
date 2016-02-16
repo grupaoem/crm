@@ -1,0 +1,179 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="page-header"><a href="../../manage_customer" class="btn btn-default">Przeglądaj litę wszystkich klientów</a>
+    
+    <h1><div style="font-size:12px">Nazwa kontrahenta / Skrócona nazwa:</div>{{customer.name}} <small>/  {{customer.shortName}}</small></h1>
+    <a href="../create" class="btn btn-success">Dodaj nowego klienta</a> 
+</div>
+<div class="row">
+    <div class="col-md-4">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <button type="button" class="btn btn-success btn-s">Najważniejsze informacje kontrahenta</button>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body">
+                    <ul>
+                        <li>Numer Telefonu: {{customer.phoneNumber}}</li>
+                        <li>{{customer.name}}</li>
+                        <li style="font-weight:bold;">{{payment.name}}</li>
+                        <li>{{discount.name}}</li>
+                        <li>{{customertype.name}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        {% if is_granted("ROLE_ADMIN") %}
+                        <button type="button" class="btn btn-denger btn-xs">Usunięcie klienta</button>
+                        {% endif %}
+                        
+                        {% if is_granted("ROLE_USER") %}
+                        <button type="button" class="btn btn-denger btn-xs">Edycja danych klienta</button>
+                        {% endif %}
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+
+                    <div class="panel-body">
+
+                      <a href="../details/edit/{{customer.id}}" class="btn btn-default">Edytuj</a>
+                      {% if is_granted("ROLE_ADMIN") %}
+                    <a href="../details/delete/{{customer.id}}" class="btn btn-danger">Skasuj</a>
+                      {% endif %}
+
+                  </div>
+                </div>
+              </div>
+            </div> 
+    </div>
+    <div class="col-md-8">    
+            <table class="table">
+            <thead>
+              <tr>
+                <th>Opis</th>
+                <th>Data dodatnia</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for b in notes %}
+              <tr>
+                <td><p style="font-weight:bold">{{b.name}}</p> {{b.description}}</td>
+                <td>{{b.dateAdd|date('F j, Y, g:i a')}}</td>
+                <td><a href="../details/{{customer.id}}/deletenote/{{b.id}}"><span  class="glyphicon glyphicon-remove" aria-hidden="true"></span>Skasuj</a></td>
+              </tr>
+              {%endfor%}
+            </tbody>
+        </table>
+         <a href="../details/{{customer.id}}/addnote" class="btn btn-success">Dodaj nową notatkę</a>         
+    </div>
+</div>
+<hr style="width: 100%; color:blue; height: 1px; background-color:#cccccc; "/>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Szczegóły klienta</a></li>
+        <li><a data-toggle="tab" href="#menu1">Wyślij wiadomość</a>
+    </ul>
+<div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Nazwa:</th>
+                <th>Wartość:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Nazwa firmy:</strong></td>
+                <td>{{customer.name}}</td>
+              </tr>
+              <tr>
+                <td><strong>Skrócona nazwa firmy:</strong></td>
+                <td>{{customer.shortName}}</td>
+              </tr>      
+              <tr>
+                <td><strong>NIP:</strong></td>
+                <td>{{customer.nip}}</td>
+              </tr>
+              <tr>
+                <td><strong>REGON:</strong></td>
+                <td>{{customer.regon}}</td>
+              </tr>     
+              <tr>
+                <td><strong>Numer budynku:</strong></td>
+                <td>{{customer.numberHouse}}</td>
+              </tr>
+              <tr>
+                <td><strong>Numer lokalu:</strong></td>
+                <td>{{customer.numberApartament}}</td>
+              </tr>      
+              <tr>
+                <td><strong>Kod pocztowy:</strong></td>
+                <td>{{customer.zipCode}}</td>
+              </tr>
+              <tr>
+                <td><strong>Miasto:</strong></td>
+                <td>{{customer.city}}</td>
+              </tr>     
+              <tr>
+                <td><strong>Kraj:</strong></td>
+                <td>{{customer.country}}</td>
+              </tr>
+              <tr>
+                <td><strong>Email:</strong></td>
+                <td><a href="mailto:{{customer.email}}">{{customer.email}}</a></td>
+              </tr>      
+              <tr>
+                <td><strong>Strona internetowa:</strong></td>
+                <td><a target="_blank" href="http://{{customer.webPage}}">{{customer.webPage}}</a></td>
+              </tr>
+              <tr>
+                <td><strong>Data utworzenia konta firmy:</strong></td>
+                <td>{{customer.dateAdd|date('F j, Y, g:i a')}}</td>
+              </tr>     
+            </tbody>
+        </table> 
+
+    </div>
+  <div id="menu1" class="tab-pane fade">
+      <h3>Wyślij wiadomość</h3> <p>Twoja wiadomość zostanie wysłana bezpośrednią na skrzynkę odbiorczą klienta.</p>
+        <form class="form-horizontal" role="form" method="post" action="index.php">
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Nazwa wiadomości</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Temat" value="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message" class="col-sm-2 control-label">Wiadomość</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="4" name="message"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <input id="submit" name="submit" type="submit" value="Wyślij" class="btn btn-primary">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <! Will be used to display an alert to the user>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

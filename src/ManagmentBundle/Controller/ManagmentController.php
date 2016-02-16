@@ -9,11 +9,11 @@ class ManagmentController extends Controller
 {
 
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function indexAction()
     {
-        return $this->render('ManagmentBundle');
+        return $this->render('ManagmentBundle:Default:index.html.twig');
     }
     
     
